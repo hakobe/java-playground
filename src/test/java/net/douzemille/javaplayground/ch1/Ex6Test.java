@@ -1,14 +1,6 @@
 package net.douzemille.javaplayground.ch1;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
-
-import java.io.File;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
 
 public class Ex6Test {
 
