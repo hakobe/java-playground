@@ -4,8 +4,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertThat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
 
 public class Ex3Test {
     @Rule
@@ -18,7 +22,7 @@ public class Ex3Test {
         tempFolder.newFile("image3.png");
         String[] results = Ex3.getFilesWithExtenstion(tempFolder.getRoot().getPath(), "jpg");
 
-        assertThat(results, equalTo(new String[]{"image1.jpg", "image2.jpg"}));
+        assertThat(Arrays.asList(results), hasItems("image1.jpg", "image2.jpg"));
     }
 
     @Test

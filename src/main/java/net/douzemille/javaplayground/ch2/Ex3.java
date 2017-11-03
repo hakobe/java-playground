@@ -22,11 +22,11 @@ public class Ex3 {
         long beforeS = System.nanoTime();
         Stream.of(strings).filter((e) -> e.length() > 12).count();
         long afterS = System.nanoTime();
-        System.out.println("Sequential\t" +  String.valueOf(afterS - beforeS));
+        // System.out.println("Sequential\t" +  String.valueOf(afterS - beforeS));
 
         long beforeP = System.nanoTime();
         Stream.of(strings).parallel().filter((e) -> e.length() > 12).count();
         long afterP = System.nanoTime();
-        System.out.println("Parallel\t" + String.valueOf(afterP - beforeP));
+        // System.out.println("Parallel\t" + String.valueOf(afterP - beforeP));
     }
 }
