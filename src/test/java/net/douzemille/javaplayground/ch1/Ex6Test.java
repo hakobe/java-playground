@@ -1,6 +1,8 @@
 package net.douzemille.javaplayground.ch1;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class Ex6Test {
 
@@ -10,10 +12,12 @@ public class Ex6Test {
         }
     };
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void uncheck() throws Exception {
-        Ex6.uncheck(() -> {
-            throw new TestingException("error happened");
-        }).run();
+        assertThrows(RuntimeException.class, () -> {
+            Ex6.uncheck(() -> {
+                throw new TestingException("error happened");
+            }).run();
+        });
     }
 }

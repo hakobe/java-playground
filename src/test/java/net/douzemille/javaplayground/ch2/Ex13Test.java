@@ -1,12 +1,10 @@
 package net.douzemille.javaplayground.ch2;
 
-import org.junit.Test;
-
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.hamcrest.CoreMatchers.is;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Ex13Test {
     @Test

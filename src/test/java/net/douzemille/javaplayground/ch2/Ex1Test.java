@@ -1,18 +1,17 @@
 package net.douzemille.javaplayground.ch2;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Ex1Test {
     @Test
     public void counter() {
-        assertThat(
+        assertEquals(
             Ex1.count(new String[]{
                 "hi", "hello", "goodbye", "ten", "cow"
             }),
-            is(2)
+            2
         );
     }
 }

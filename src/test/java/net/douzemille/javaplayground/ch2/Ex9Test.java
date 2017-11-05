@@ -1,13 +1,13 @@
 package net.douzemille.javaplayground.ch2;
 
-import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-import static org.junit.Assert.assertThat;
-import static org.hamcrest.CoreMatchers.is;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Ex9Test {
 
@@ -22,8 +22,8 @@ public class Ex9Test {
     public void concats() {
         ArrayList<Integer> expected = new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
 
-        assertThat(Ex9.concat1(newStream()), is(expected));
-        assertThat(Ex9.concat2(newStream()), is(expected));
-        assertThat(Ex9.concat3(newStream()), is(expected));
+        assertEquals(Ex9.concat1(newStream()), expected);
+        assertEquals(Ex9.concat2(newStream()), expected);
+        assertEquals(Ex9.concat3(newStream()), expected);
     }
 }

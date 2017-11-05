@@ -1,13 +1,12 @@
 package net.douzemille.javaplayground.ch1;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
 
 public class Ex9Test {
     class ArrayList2<E> extends ArrayList<E> implements Ex9.Collection2<E> {}
@@ -28,6 +27,6 @@ public class Ex9Test {
             }
         );
 
-        assertThat(results, is(Arrays.asList(2,4)));
+        assertEquals(results, Arrays.asList(2,4));
     }
 }

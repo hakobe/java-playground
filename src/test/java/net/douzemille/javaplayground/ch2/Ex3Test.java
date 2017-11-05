@@ -1,6 +1,6 @@
 package net.douzemille.javaplayground.ch2;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class Ex3Test {
     @Test

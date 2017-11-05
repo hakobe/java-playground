@@ -1,33 +1,31 @@
 package net.douzemille.javaplayground.ch1;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
-
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+
 
 public class Ex4Test {
-    @Rule
-    public TemporaryFolder tempFolder = new TemporaryFolder();
-
     @Test
     public void sortFiles() throws Exception {
-        File dir1 = tempFolder.newFolder("dir1");
-        File dir2 = tempFolder.newFolder("dir2");
-        File file1 = tempFolder.newFile("file1");
-        File file2 = tempFolder.newFile("file2");
-        File file3 = tempFolder.newFile("file3");
+        Path dirPath = Files.createTempDirectory("ex4");
+        File dir1 = Files.createDirectory(Paths.get(dirPath.toString(), "dir1")).toFile();
+        File dir2 = Files.createDirectory(Paths.get(dirPath.toString(), "dir2")).toFile();
+        File file1 = Files.createFile(Paths.get(dirPath.toString(), "file1")).toFile();
+        File file2 = Files.createFile(Paths.get(dirPath.toString(), "file2")).toFile();
+        File file3 = Files.createFile(Paths.get(dirPath.toString(), "file3")).toFile();
 
         File[] sortedFiles = Ex4.sortFiles(new File[]{
                 file3, file1, dir2, file2, dir1
         });
 
-        assertThat(sortedFiles, equalTo(new File[]{
+        assertArrayEquals(sortedFiles, new File[]{
                 dir1, dir2, file1, file2, file3
-        }));
+        });
     }
-
 }

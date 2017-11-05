@@ -1,30 +1,32 @@
 package net.douzemille.javaplayground.ch1;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Ex2Test {
-    @Rule
-    public TemporaryFolder tempFolder = new TemporaryFolder();
-
     @Test
     public void getDirectories() throws Exception {
-        tempFolder.newFile("testFile1");
-        tempFolder.newFile("testFile2");
-        tempFolder.newFolder("testDir1");
-        tempFolder.newFolder("testDir2");
-        tempFolder.newFolder("testDir3");
-        String[] results = Ex2.getDirectories(tempFolder.getRoot().getPath());
+        Path dirPath = Files.createTempDirectory("ex2");
+        File dir1 = Files.createDirectory(Paths.get(dirPath.toString(), "dir1")).toFile();
+        File dir2 = Files.createDirectory(Paths.get(dirPath.toString(), "dir2")).toFile();
+        File file1 = Files.createFile(Paths.get(dirPath.toString(), "file1")).toFile();
+        File file2 = Files.createFile(Paths.get(dirPath.toString(), "file2")).toFile();
+        File file3 = Files.createFile(Paths.get(dirPath.toString(), "file3")).toFile();
+        String[] results = Ex2.getDirectories(dirPath.toString());
 
-        assertArrayEquals(new String[]{"testDir1", "testDir2", "testDir3"}, results);
+        assertArrayEquals(new String[]{"dir1", "dir2"}, results);
     }
 
     @Test
     public void getDirectoriesWithEmptyDir() throws Exception {
-        String[] results = Ex2.getDirectories(tempFolder.getRoot().getPath());
+        Path dirPath = Files.createTempDirectory("ex2");
+        String[] results = Ex2.getDirectories(dirPath.toString());
 
         assertArrayEquals(new String[]{}, results);
     }

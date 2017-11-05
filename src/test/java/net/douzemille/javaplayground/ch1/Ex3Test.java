@@ -1,37 +1,36 @@
 package net.douzemille.javaplayground.ch1;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.List;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
 
 public class Ex3Test {
-    @Rule
-    public TemporaryFolder tempFolder = new TemporaryFolder();
-
     @Test
     public void getFilesWithExtension() throws Exception {
-        tempFolder.newFile("image1.jpg");
-        tempFolder.newFile("image2.jpg");
-        tempFolder.newFile("image3.png");
-        String[] results = Ex3.getFilesWithExtenstion(tempFolder.getRoot().getPath(), "jpg");
+        Path dirPath = Files.createTempDirectory("ex3");
+        Files.createFile(Paths.get(dirPath.toString(), "image1.jpg")).toFile();
+        Files.createFile(Paths.get(dirPath.toString(), "image2.jpg")).toFile();
+        Files.createFile(Paths.get(dirPath.toString(), "image3.png")).toFile();
+        String[] results = Ex3.getFilesWithExtenstion(dirPath.toString(), "jpg");
+        Arrays.sort(results);
 
-        assertThat(Arrays.asList(results), hasItems("image1.jpg", "image2.jpg"));
+        assertArrayEquals(results, new String[]{"image1.jpg", "image2.jpg"});
     }
 
     @Test
     public void getFilesWithExtensionNotFound() throws Exception {
-        tempFolder.newFile("image1.jpg");
-        tempFolder.newFile("image2.jpg");
-        tempFolder.newFile("image3.png");
-        String[] results = Ex3.getFilesWithExtenstion(tempFolder.getRoot().getPath(), "gif");
+        Path dirPath = Files.createTempDirectory("ex3");
+        Files.createFile(Paths.get(dirPath.toString(), "image1.jpg")).toFile();
+        Files.createFile(Paths.get(dirPath.toString(), "image2.jpg")).toFile();
+        Files.createFile(Paths.get(dirPath.toString(), "image3.jpg")).toFile();
+        String[] results = Ex3.getFilesWithExtenstion(dirPath.toString(), "gif");
 
-        assertThat(results, equalTo(new String[]{}));
+        assertArrayEquals(results, new String[]{});
     }
 }

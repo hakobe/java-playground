@@ -1,19 +1,17 @@
 package net.douzemille.javaplayground.ch1;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Ex8Test {
     @Test
     public void capturing() {
-        assertThat(
+        assertEquals(
             Ex8.capturing(new String[]{"Peter", "Paul", "Mary"}),
-            is(Arrays.asList("Peter", "Paul", "Mary"))
+            Arrays.asList("Peter", "Paul", "Mary")
         );
     }
 }
